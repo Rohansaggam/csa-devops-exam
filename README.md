@@ -218,7 +218,10 @@ sudo mv terraform /usr/local/bin/
 rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 echo "=== Jenkins Installation Completed ==="
+
 echo "Jenkins is running at: http://$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4):8080"
+
 echo "To get the initial admin password:"
+
 echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
 -------------------------------------------------------------------------------------------------------------------------------------
