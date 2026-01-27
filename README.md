@@ -172,8 +172,6 @@ Supports extension to multi-environment deployments
 
 create jenkins_install.sh file and copy below commands and run 
 
--------------------------------------------------------------------------------------------------------------------------------------
-
 #!/bin/bash
 
 # =================================================================
