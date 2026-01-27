@@ -167,5 +167,58 @@ Run the Jenkins pipeline
 S3 bucket creation is out of Terraform scope – manage manually via AWS Console or CLI
 
 Supports extension to multi-environment deployments
+-------------------------------------------------------------------------------------------------------------------------------------
+# jenkins & terraform  setup commands 
+create jenkins.sh file and copy below commands and run 
+-------------------------------------------------------------------------------------------------------------------------------------#!/bin/bash
+# =================================================================
+# install_jenkins.sh
+# Description: Install Jenkins (latest LTS), Java 17, Git, Terraform
+# on Amazon Linux 2 and enable Jenkins service
+# =================================================================
 
+set -e
+
+echo "=== Updating system packages ==="
+sudo yum update -y
+
+echo "=== Installing required tools ==="
+sudo amazon-linux-extras enable java-openjdk17 -y
+sudo yum install -y java-17-amazon-corretto git wget unzip
+
+# Export JAVA_HOME for current session and persist
+echo "=== Setting JAVA_HOME ==="
+JAVA_PATH=$(dirname $(dirname $(readlink -f $(which java))))
+echo "export JAVA_HOME=${JAVA_PATH}" | sudo tee /etc/profile.d/java.sh
+echo "export PATH=\$JAVA_HOME/bin:\$PATH" | sudo tee -a /etc/profile.d/java.sh
+# Apply immediately
+source /etc/profile.d/java.sh
+
+echo "JAVA_HOME is set to: $JAVA_HOME"
+echo "Java version: $(java -version)"
+
+echo "=== Adding Jenkins repo ==="
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+echo "=== Installing Jenkins ==="
+sudo yum install -y jenkins
+
+echo "=== Starting and enabling Jenkins service ==="
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+
+echo "=== Installing Terraform ==="
+# Define Terraform version
+TERRAFORM_VERSION="1.6.4"
+wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
+rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+echo "=== Jenkins Installation Completed ==="
+echo "Jenkins is running at: http://$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4):8080"
+echo "To get the initial admin password:"
+echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
 -------------------------------------------------------------------------------------------------------------------------------------
