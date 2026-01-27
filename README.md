@@ -60,7 +60,7 @@ variables.tf – Centralized variables
 
 terraform.tfvars – Environment-specific inputs
 
-ec2.tf – EC2 provisioning logic
+instance.tf – EC2 provisioning logic
 
 iam.tf – IAM roles and instance profile references
 
