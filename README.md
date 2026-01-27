@@ -169,10 +169,15 @@ S3 bucket creation is out of Terraform scope – manage manually via AWS Console
 Supports extension to multi-environment deployments
 -------------------------------------------------------------------------------------------------------------------------------------
 # jenkins & terraform  setup commands 
-create jenkins.sh file and copy below commands and run 
--------------------------------------------------------------------------------------------------------------------------------------#!/bin/bash
+
+create jenkins_install.sh file and copy below commands and run 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+
 # =================================================================
-# install_jenkins.sh
+# jenkins_install.sh
 # Description: Install Jenkins (latest LTS), Java 17, Git, Terraform
 # on Amazon Linux 2 and enable Jenkins service
 # =================================================================
@@ -224,4 +229,5 @@ echo "Jenkins is running at: http://$(curl -s http://169.254.169.254/latest/meta
 echo "To get the initial admin password:"
 
 echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
+
 -------------------------------------------------------------------------------------------------------------------------------------
