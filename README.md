@@ -70,7 +70,7 @@ Installation Script
 
 install_nginx.sh – Installs and starts NGINX on target EC2
 -------------------------------------------------------------------------------------------------------------------------------------
-# All files are in the root directory for simplicity and easy access.
+# All files are in the root directory for simplicity and easy access only policies are in policy folder so policy contain "11112222333"="AWSACCOUNTID".
 -------------------------------------------------------------------------------------------------------------------------------------
 # IAM & Security Model
 
@@ -136,38 +136,14 @@ No direct SSH access or hard-coded IPs
 -------------------------------------------------------------------------------------------------------------------------------------
 AWS account with necessary IAM roles
 
-Jenkins EC2 instance with attached IAM role
+EC2 instance with attached IAM role 
 
-S3 bucket for Terraform backend
+s3 bucket with policy attached 
 
 GitHub fine-grained PAT configured in Jenkins
 
-# Best Practices
--------------------------------------------------------------------------------------------------------------------------------------
-Infrastructure as Code (IaC)
+------------------------------------------------------------------------------------------------------------
 
-Immutable deployments
-
-Least-privilege IAM
-
-Secure remote state management
-
-SSM-based EC2 management (no SSH)
-
-Secrets-free code
-
-Configure environment variables and terraform.tfvars
-
-Ensure IAM roles are attached to Jenkins and target EC2
-
-Run the Jenkins pipeline
-
-# Notes
-
-S3 bucket creation is out of Terraform scope – manage manually via AWS Console or CLI
-
-Supports extension to multi-environment deployments
--------------------------------------------------------------------------------------------------------------------------------------
 # jenkins & terraform  setup commands 
 
 create jenkins_install.sh file and copy below commands and run 
@@ -222,4 +198,7 @@ echo "To get the initial admin password:"
 
 echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
 
--------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
