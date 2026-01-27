@@ -70,7 +70,9 @@ Installation Script
 
 install_nginx.sh – Installs and starts NGINX on target EC2
 -------------------------------------------------------------------------------------------------------------------------------------
-# All files are in the root directory for simplicity and easy access only policies are in policy folder so policy contain "11112222333"="AWSACCOUNTID".
+
+# All files are in the root directory for simplicity and easy access, policy folder contains policies.  
+ 
 -------------------------------------------------------------------------------------------------------------------------------------
 # IAM & Security Model
 
@@ -138,7 +140,7 @@ AWS account with necessary IAM roles
 
 EC2 instance with attached IAM role 
 
-s3 bucket with policy attached 
+s3 bucket with policy attached [while creating bucket policy manually "111122223333"="aws-account-id" ]  
 
 GitHub fine-grained PAT configured in Jenkins
 
