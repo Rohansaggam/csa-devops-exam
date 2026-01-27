@@ -174,12 +174,6 @@ create jenkins_install.sh file and copy below commands and run
 
 #!/bin/bash
 
-# =================================================================
-# jenkins_install.sh
-# Description: Install Jenkins (latest LTS), Java 17, Git, Terraform
-# on Amazon Linux 2 and enable Jenkins service
-# =================================================================
-
 set -e
 
 echo "=== Updating system packages ==="
