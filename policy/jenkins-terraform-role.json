@@ -29,6 +29,22 @@
             "Resource": "*"
         },
         {
+            "Sid": "S3BucketBackend",
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:ListAllMyBuckets",
+                "s3:DeleteBucket",
+                "s3:ListBucket",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPolicy",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "*"
+        },
+        {
             "Sid": "EC2CreateInstance",
             "Effect": "Allow",
             "Action": [
@@ -86,15 +102,11 @@
         {
             "Sid": "IAMPassRole",
             "Effect": "Allow",
-            "Action": [
-                "iam:PassRole"
-            ],
+            "Action": "iam:PassRole",
             "Resource": "*",
             "Condition": {
                 "StringEquals": {
-                    "iam:PassedToService": [
-                        "ec2.amazonaws.com"
-                    ]
+                    "iam:PassedToService": "ec2.amazonaws.com"
                 }
             }
         },

@@ -7,7 +7,7 @@
                 "AWS": "arn:aws:iam::111122223333:role/jenkins-terraform-role"
             },
             "Action": "s3:ListBucket",
-            "Resource": "arn:aws:s3:::jenkins-terraform-backend-store"
+            "Resource": "arn:aws:s3:::jenkins-terraform-backend-store1"
         },
         {
             "Effect": "Allow",
@@ -19,7 +19,7 @@
                 "s3:PutObject",
                 "s3:DeleteObject"
             ],
-            "Resource": "arn:aws:s3:::jenkins-terraform-backend-store/stage1/terraform.tfstate"
+            "Resource": "arn:aws:s3:::jenkins-terraform-backend-store1/stage1/terraform.tfstate"
         }
     ]
 }
